@@ -1,0 +1,50 @@
+version: '3.7'
+
+services:
+  db:
+    image: postgres:11.6
+  web:
+    build:
+      args:
+        REQUIREMENTS: ${REQUIREMENTS}
+      context: ./
+      dockerfile: dev.Dockerfile
+    image: "djambda-dev"
+    environment:
+     - DATABASE_URL
+     - STATIC_URL
+     - STATIC_ROOT
+     - AWS_ACCESS_KEY_ID
+     - AWS_SECRET_ACCESS_KEY
+     - AWS_DEFAULT_REGION
+     - ENABLE_S3_STORAGE
+     - AWS_S3_ACCESS_KEY_ID
+     - AWS_S3_SECRET_ACCESS_KEY
+     - AWS_S3_BUCKET_NAME_STATIC
+     - AWS_S3_ACCESS_KEY_ID_STATIC
+     - AWS_S3_SECRET_ACCESS_KEY_STATIC
+     - AWS_S3_KEY_PREFIX_STATIC
+     - AWS_REGION_STATIC
+     - AWS_REGION_NAME
+     - ENABLE_SQS_EMAIL_BACKEND
+     - SES_SQS_URL
+     - AWS_S3_PUBLIC_URL_STATIC
+     - DJANGO_SUPERUSER_NAME
+     - DJANGO_SUPERUSER_EMAIL
+     - DJANGO_SUPERUSER_PASSWORD
+     - ENABLE_SMTP_EMAIL_BACKEND
+     - EMAIL_USE_TLS
+     - EMAIL_PORT
+     - EMAIL_HOST_USER
+     - EMAIL_HOST_PASSWORD
+     - EMAIL_HOST
+     - DEFAULT_FROM_EMAIL
+     - DJANGO_SU_PASSWORD
+     - ENABLE_MANIFEST_STORAGE
+    command: bash -c "./src/manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ./:/var/task
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db

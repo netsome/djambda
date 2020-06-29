@@ -1,0 +1,8 @@
+-c test.txt
+-r test.in
+
+black
+django-s3-storage
+isort
+pip-tools
+pre-commit
