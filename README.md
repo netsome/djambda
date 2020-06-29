@@ -46,3 +46,4 @@ Terraform sets up following AWS resources:
 
 ## TODO
 * Remove db and staticfiles after lambda destroy
+* Test scripts
