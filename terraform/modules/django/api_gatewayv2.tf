@@ -12,7 +12,7 @@ resource "aws_apigatewayv2_integration" "lambda" {
   integration_uri           = "arn:aws:apigateway:${var.aws_region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${var.aws_region}:${data.aws_caller_identity.current.account_id}:function:$${stageVariables.lambdaFunctionName}/invocations"
 }
 
-resource "aws_apigatewayv2_route" "example" {
+resource "aws_apigatewayv2_route" "lambda" {
   api_id    = aws_apigatewayv2_api.lambda.id
   route_key = "$default"
 }
@@ -28,7 +28,7 @@ resource "aws_apigatewayv2_stage" "lambda" {
 
 resource "aws_apigatewayv2_deployment" "lambda" {
   count = var.create_lambda_function && var.enable_api_gatewayv2 ? 1 : 0
-  api_id      = aws_apigatewayv2_api.example.id
+  api_id      = aws_apigatewayv2_api.lambda.id
 
   triggers = {
     redeployment = sha1(join(",", list(
