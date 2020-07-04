@@ -11,3 +11,5 @@ variable "default_from_email" {}
 variable "enable_s3_endpoint" {default = false}
 variable "enable_dynamodb_endpoint" {default = false}
 variable "enable_ses_endpoint" {default = false}
+variable "enable_api_gateway" {default = false}
+variable "enable_api_gatewayv2" {default = false}

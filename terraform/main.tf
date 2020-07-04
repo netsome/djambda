@@ -1,11 +1,11 @@
 terraform {
- backend "remote" {
-   organization = "netsome"
+  backend "remote" {
+    organization = "netsome"
 
-   workspaces {
-     name = "djambda"
-   }
- }
+    workspaces {
+      name = "djambda"
+    }
+  }
 }
 
 provider "aws" {

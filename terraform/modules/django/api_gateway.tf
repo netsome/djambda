@@ -46,7 +46,7 @@ resource "aws_api_gateway_integration" "lambda_root" {
 }
 
 resource "aws_api_gateway_deployment" "lambda" {
-  count = var.create_lambda_function ? length(keys(local.dist_manifest)) : 0
+  count = var.create_lambda_function && var.enable_api_gateway ? length(keys(local.dist_manifest)) : 0
   depends_on = [
     aws_api_gateway_integration.lambda,
     aws_api_gateway_integration.lambda_root,
