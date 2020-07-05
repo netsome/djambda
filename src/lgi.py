@@ -22,14 +22,17 @@ class LGIRequest(HttpRequest):
         self.event = event
         self._read_started = False
         self.resolver_match = None
-        self.path_info = event["requestContext"]["http"]["path"]
-        self.path = self.path_info
+        # If PATH_INFO is empty (e.g. accessing the SCRIPT_NAME URL without a
+        # trailing slash), operate as if '/' was requested.
+        script_name = get_script_name(event) or "/"
+        self.path = event["requestContext"]["http"]["path"]
+        self.path_info = self.path[len(script_name.rstrip("/")) :]
         self.method = event["requestContext"]["http"]["method"]
 
         self.META = {
             "REQUEST_METHOD": self.method,
             "QUERY_STRING": event["rawQueryString"],
-            "SCRIPT_NAME": "",
+            "SCRIPT_NAME": script_name,
             "PATH_INFO": self.path_info,
             "REMOTE_ADDR": event["requestContext"]["http"]["sourceIp"],
             "REMOTE_HOST": event["requestContext"]["http"]["sourceIp"],
@@ -114,10 +117,7 @@ class LGIHandler(base.BaseHandler):
 
 
 def get_script_name(event):
-    if settings.FORCE_SCRIPT_NAME is not None:
-        return settings.FORCE_SCRIPT_NAME
-    else:
-        return ""
+    return settings.FORCE_SCRIPT_NAME or ""
 
 
 def get_lgi_application():
