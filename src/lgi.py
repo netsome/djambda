@@ -87,15 +87,15 @@ class LGIHandler(base.BaseHandler):
         self.load_middleware()
 
     def __call__(self, event, context):
-        logger.info(event)
+        logger.debug(event)
 
-        # handle manage.py
+        # management commands
         if "manage" in event:
             output = StringIO()
             management.call_command(*event["manage"], stdout=output)
             return {"output": output.getvalue()}
 
-        # handle api gateway
+        # api gateway
         version = event["version"]
         if version != "2.0":
             raise ValueError(f"{version} format version is not supported")
@@ -108,11 +108,11 @@ class LGIHandler(base.BaseHandler):
         response._handler_class = self.__class__
 
         return {
-            "body": response.content.decode(),
-            "headers": list(response.items()),
-            "statusCode": response.status_code,
+            "cookies": list(c.output(header="") for c in response.cookies.values()),
             "isBase64Encoded": False,
-            "cookies": list(response.cookies.values()),
+            "statusCode": response.status_code,
+            "headers": dict(response.items()),
+            "body": response.content.decode(),
         }
 
 
