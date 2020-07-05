@@ -154,7 +154,20 @@ data "aws_lambda_invocation" "migrate" {
 }
 
 resource "aws_lambda_permission" "apigw" {
-  count = var.create_lambda_function ? length(aws_lambda_function.function) : 0
+  count = var.create_lambda_function && var.enable_api_gateway ? length(aws_lambda_function.function) : 0
+
+  statement_id  = "AllowAPIGatewayInvoke"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.function[count.index].function_name
+  principal     = "apigateway.amazonaws.com"
+
+  # The "/*/*" portion grants access from any method on any resource
+  # within the API Gateway REST API.
+  source_arn = "${aws_api_gateway_rest_api.lambda.execution_arn}/*/*"
+}
+
+resource "aws_lambda_permission" "apigw" {
+  count = var.create_lambda_function && var.enable_api_gatewayv2 ? length(aws_lambda_function.function) : 0
 
   statement_id  = "AllowAPIGatewayInvoke"
   action        = "lambda:InvokeFunction"
