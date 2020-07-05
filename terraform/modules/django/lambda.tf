@@ -166,7 +166,7 @@ resource "aws_lambda_permission" "apigw" {
   source_arn = "${aws_api_gateway_rest_api.lambda.execution_arn}/*/*"
 }
 
-resource "aws_lambda_permission" "apigw" {
+resource "aws_lambda_permission" "apigwv2" {
   count = var.create_lambda_function && var.enable_api_gatewayv2 ? length(aws_lambda_function.function) : 0
 
   statement_id  = "AllowAPIGatewayInvoke"
