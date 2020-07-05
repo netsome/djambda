@@ -136,7 +136,7 @@ data "aws_lambda_invocation" "createdb" {
 
   input = jsonencode(
     {
-      manage = "createdb ${keys(local.dist_manifest)[count.index]} --exist_ok"
+      manage = ["createdb", "${keys(local.dist_manifest)[count.index]}", "--exist_ok"]
     }
   )
 }
@@ -148,7 +148,7 @@ data "aws_lambda_invocation" "migrate" {
 
   input = jsonencode(
     {
-      manage = "migrate --noinput"
+      manage = ["migrate", "--noinput"]
     }
   )
 }

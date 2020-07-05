@@ -1,12 +1,12 @@
 import json
 import sys
-from io import BytesIO
+from io import BytesIO, StringIO
 from typing import Any, Dict, List
 from wsgiref.headers import Headers
 
 import django
 from django.conf import settings
-from django.core import signals
+from django.core import management, signals
 from django.core.handlers import base
 from django.http import HttpRequest, QueryDict, parse_cookie
 from django.urls import set_script_prefix
@@ -17,10 +17,6 @@ _default_route_key = "$default"
 
 class LGIRequest(HttpRequest):
     def __init__(self, payload):
-        version = payload["version"]
-        if version != "2.0":
-            raise ValueError(f"{version} format version is not supported")
-
         self._read_started = False
         self.resolver_match = None
         script_name = (
@@ -89,7 +85,19 @@ class LGIHandler(base.BaseHandler):
         super().__init__()
         self.load_middleware()
 
-    def __call__(self, payload):
+    def __call__(self, payload, context):
+        print(payload, context)
+        # handle manage.py
+        if "manage" in payload:
+            output = StringIO()
+            management.call_command(payload["manage"], stdout=output)
+            return {"output": output.getvalue()}
+
+        # handle api gateway
+        version = payload["version"]
+        if version != "2.0":
+            raise ValueError(f"{version} format version is not supported")
+
         set_script_prefix(self.get_script_prefix(payload))
         signals.request_started.send(sender=self.__class__, payload=payload)
         request = self.request_class(payload)
