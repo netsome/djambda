@@ -1,4 +1,5 @@
 import json
+import logging
 import sys
 from io import BytesIO, StringIO
 from typing import Any, Dict, List
@@ -12,6 +13,7 @@ from django.http import HttpRequest, QueryDict, parse_cookie
 from django.urls import set_script_prefix
 from django.utils.functional import cached_property
 
+logger = logging.getLogger("django.request")
 _default_route_key = "$default"
 
 
@@ -82,6 +84,8 @@ class LGIHandler(base.BaseHandler):
         self.load_middleware()
 
     def __call__(self, event, context):
+        logger.info(event)
+
         # handle manage.py
         if "manage" in event:
             output = StringIO()
@@ -93,7 +97,7 @@ class LGIHandler(base.BaseHandler):
         if version != "2.0":
             raise ValueError(f"{version} format version is not supported")
 
-        set_script_prefix(getattr(settings, "FORCE_SCRIPT_NAME", ""))
+        set_script_prefix(get_script_name(event))
         signals.request_started.send(sender=self.__class__, event=event)
         request = self.request_class(event)
         response = self.get_response(request)
@@ -107,6 +111,13 @@ class LGIHandler(base.BaseHandler):
             "isBase64Encoded": False,
             "cookies": list(response.cookies.values()),
         }
+
+
+def get_script_name(event):
+    if settings.FORCE_SCRIPT_NAME is not None:
+        return settings.FORCE_SCRIPT_NAME
+    else:
+        return ""
 
 
 def get_lgi_application():
