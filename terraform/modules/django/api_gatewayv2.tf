@@ -8,13 +8,16 @@ resource "aws_apigatewayv2_integration" "lambda" {
   integration_type = "AWS_PROXY"
 
   connection_type           = "INTERNET"
-  integration_method        = "POST"
+  integration_method        = "ANY"
   integration_uri           = "arn:aws:apigateway:${var.aws_region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${var.aws_region}:${data.aws_caller_identity.current.account_id}:function:$${stageVariables.lambdaFunctionName}/invocations"
+  payload_format_version    = "2.0"
 }
 
 resource "aws_apigatewayv2_route" "lambda" {
   api_id    = aws_apigatewayv2_api.lambda.id
   route_key = "$default"
+
+  target = "integrations/${aws_apigatewayv2_integration.lambda.id}"
 }
 
 resource "aws_apigatewayv2_stage" "lambda" {
