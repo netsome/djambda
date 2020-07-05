@@ -88,8 +88,9 @@ click==7.1.2 \
     --hash=sha256:d2b5255c7c6349bc1bd1e59e08cd12acbbd63ce649f2588755783aa94dfb6b1a \
     --hash=sha256:dacca89f4bfadd5de3d7489b7c8a566eee0d3676333fbb50030263894c38c0dc \
     # via black, pip-tools
-distlib==0.3.0 \
-    --hash=sha256:2e166e231a26b36d6dfe35a48c4464346620f8645ed0ace01ee31822b288de21 \
+distlib==0.3.1 \
+    --hash=sha256:8c09de2c67b3e7deef7184574fc060ab8a793e7adbb183d942c389c8b13c52fb \
+    --hash=sha256:edf6116872c863e1aa9d5bb7cb5e05a022c519a4594dc703843343a9ddd9bff1 \
     # via virtualenv
 dj-database-url==0.5.0 \
     --hash=sha256:4aeaeb1f573c74835b0686a2b46b85990571159ffc21aa57ecd4d1e1cb334163 \
@@ -106,9 +107,9 @@ django-cache-url==3.1.2 \
 django-s3-storage==0.13.2 \
     --hash=sha256:f938740590ab5e5189653228e52094ddacaaf0f0faf0d719ca7a0b2391906161 \
     # via -r requirements/dev.in
-django==3.0.7 \
-    --hash=sha256:5052b34b34b3425233c682e0e11d658fd6efd587d11335a0203d827224ada8f2 \
-    --hash=sha256:e1630333248c9b3d4e38f02093a26f1e07b271ca896d73097457996e0fae12e8 \
+django==3.0.8 \
+    --hash=sha256:31a5fbbea5fc71c99e288ec0b2f00302a0a92c44b13ede80b73a6a4d6d205582 \
+    --hash=sha256:5457fc953ec560c5521b41fad9e6734a4668b7ba205832191bbdff40ec61073c \
     # via -c requirements/base.txt, -c requirements/test.txt, -r requirements/base.in, django-s3-storage
 docutils==0.15.2 \
     --hash=sha256:6c4f696463b79f1fb8ba0c594b63840ebd41f059e92b31957c46b74a4599b6d0 \
@@ -123,13 +124,13 @@ filelock==3.0.12 \
     --hash=sha256:18d82244ee114f543149c66a6e0c14e9c4f8a1044b5cdaadd0f82159d6a6ff59 \
     --hash=sha256:929b7d63ec5b7d6b71b0fa5ac14e030b3f70b75747cef1b10da9b879fef15836 \
     # via virtualenv
-identify==1.4.20 \
-    --hash=sha256:acf0712ab4042642e8f44e9532d95c26fbe60c0ab8b6e5b654dd1bc6512810e0 \
-    --hash=sha256:b2cd24dece806707e0b50517c1b3bcf3044e0b1cb13a72e7d34aa31c91f2a55a \
+identify==1.4.21 \
+    --hash=sha256:c4d07f2b979e3931894170a9e0d4b8281e6905ea6d018c326f7ffefaf20db680 \
+    --hash=sha256:dac33eff90d57164e289fb20bf4e131baef080947ee9bf45efcd0da8d19064bf \
     # via pre-commit
-isort==4.3.21 \
-    --hash=sha256:54da7e92468955c4fceacd0c86bd0ec997b0e1ee80d97f67c35a78b719dccab1 \
-    --hash=sha256:6e811fcb295968434526407adb8796944f1988c5b65e8139058f2014cbe100fd \
+isort==5.0.3 \
+    --hash=sha256:3fbfad425b0a08a2969c5e1821d88785c210a08656c029c28931a1620f2d0f12 \
+    --hash=sha256:4c48d4cd773a6226baaaa176839e6f7ff82ef7c7842f6c54374fe2b14df4024b \
     # via -r requirements/dev.in
 jmespath==0.10.0 \
     --hash=sha256:b85d0567b8666149a93172712e68920734333c0ce7e89b78b3e987f71e5ed4f9 \
@@ -150,9 +151,9 @@ pip-tools==5.2.1 \
     --hash=sha256:1690bef5f0f714160c3aedacb03520e2359a78f7f9fa17e574cf8659cf2ef614 \
     --hash=sha256:5b4b6e7b6e66357685c73e856296b4792b2d159ff6074729e250e291834bfd9d \
     # via -r requirements/dev.in
-pre-commit==2.5.1 \
-    --hash=sha256:c5c8fd4d0e1c363723aaf0a8f9cba0f434c160b48c4028f4bae6d219177945b3 \
-    --hash=sha256:da463cf8f0e257f9af49047ba514f6b90dbd9b4f92f4c8847a3ccd36834874c7 \
+pre-commit==2.6.0 \
+    --hash=sha256:1657663fdd63a321a4a739915d7d03baedd555b25054449090f97bb0cb30a915 \
+    --hash=sha256:e8b1315c585052e729ab7e99dcca5698266bedce9067d21dc909c23e3ceed626 \
     # via -r requirements/dev.in
 psycopg2-binary==2.8.5 \
     --hash=sha256:008da3ab51adc70a5f1cfbbe5db3a22607ab030eb44bcecf517ad11a0c2b3cac \
@@ -194,9 +195,9 @@ python-dateutil==2.8.1 \
     --hash=sha256:73ebfe9dbf22e832286dafa60473e4cd239f8592f699aa5adaf10050e6e1823c \
     --hash=sha256:75bb3f31ea686f1197762692a9ee6a7550b59fc6ca3a1f4b5d7e32fb98e2da2a \
     # via -c requirements/base.txt, -c requirements/test.txt, botocore
-python-dotenv==0.13.0 \
-    --hash=sha256:25c0ff1a3e12f4bde8d592cc254ab075cfe734fc5dd989036716fd17ee7e5ec7 \
-    --hash=sha256:3b9909bc96b0edc6b01586e1eed05e71174ef4e04c71da5786370cebea53ad74 \
+python-dotenv==0.14.0 \
+    --hash=sha256:8c10c99a1b25d9a68058a1ad6f90381a62ba68230ca93966882a4dbc3bc9c33d \
+    --hash=sha256:c10863aee750ad720f4f43436565e4c1698798d763b63234fb5021b6c616e423 \
     # via -c requirements/base.txt, -c requirements/test.txt, environs
 pytz==2020.1 \
     --hash=sha256:a494d53b6d39c3c6e44c3bec237336e14305e4f29bbf800b599253057fbb79ed \
