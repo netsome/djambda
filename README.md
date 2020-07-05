@@ -44,5 +44,11 @@ Terraform sets up following AWS resources:
 * [Zappa](https://github.com/Miserlou/Zappa)
 * [chalice](https://github.com/aws/chalice)
 
+## Costs
+
+The default setup fits into Free Tier. It doesn't create NAT Gateways but you can set it up in `terraform/modules/django/vpc.tf`, it's a bit pricey though. You can read more about NAT Gateway Scenarios [here](https://github.com/terraform-aws-modules/terraform-aws-vpc#nat-gateway-scenarios). [NAT instance](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_NAT_Instance.html) on t2.micro EC2 fits into Free Tier but it's more work to set it up and maintain. If you don't need internet access but want to connect to other AWS services you can always enable [Gateway VPC endpoints](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-gateway.html) or [Interface VPC endpoints](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-interface.html). Django tf module takes `enable_s3_endpoint`, `enable_dynamodb_endpoint` and `enable_ses_endpoint` variables, check out `terraform/modules/django/variables.tf`.
+
 ## TODO
 * Remove db and staticfiles after lambda destroy
+* Currently creating multiple django modules with the same lambda_function_name and stage is not supported. Add some random string to resource names when creating roles, policies, users, buckets and db to fix this issue.
+* Document terraform.
