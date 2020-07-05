@@ -71,7 +71,7 @@ class LGIRequest(HttpRequest):
     @cached_property
     def COOKIES(self):
         # parse_cookie expects cookies list as a ; separated string
-        return parse_cookie(";".join(self.event["cookies"]))
+        return parse_cookie(";".join(self.event.get("cookies", [])))
 
 
 class LGIHandler(base.BaseHandler):
