@@ -90,7 +90,7 @@ class LGIHandler(base.BaseHandler):
         # handle manage.py
         if "manage" in payload:
             output = StringIO()
-            management.call_command(payload["manage"], stdout=output)
+            management.call_command(*payload["manage"], stdout=output)
             return {"output": output.getvalue()}
 
         # handle api gateway
