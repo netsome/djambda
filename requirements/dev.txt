@@ -104,9 +104,9 @@ django-cache-url==3.1.2 \
     --hash=sha256:889ac5d56105bdf44c0fd8f82c024119e198baf0bf698fdf49b1d5de92d8d4bb \
     --hash=sha256:d0ee0d6c5daab92787bff47a4a6f5a6cf97c3c80d81a990820b2af16e12ad65a \
     # via -c requirements/base.txt, -c requirements/test.txt, environs
-django-lgi==0.1.0 \
-    --hash=sha256:95ac6b462903236efa2be598dc9bed1121ddaa0c617b2414711219f2125c8c88 \
-    --hash=sha256:e1823133c4acf944b7154cceb1235d61ee1a52c3bde1966c6dc34bcffb8a7140 \
+django-lgi==0.1.1 \
+    --hash=sha256:953d66b658e06a22d953db884470db56b8a25007bed4f1a4509ca5114ca8909e \
+    --hash=sha256:b75df9bf2ca99ab8c83fc98541dc6789dea6b54d8975530afe06f5bc7d3ec97f \
     # via -c requirements/base.txt, -c requirements/test.txt, -r requirements/base.in
 django-s3-storage==0.13.2 \
     --hash=sha256:f938740590ab5e5189653228e52094ddacaaf0f0faf0d719ca7a0b2391906161 \
