@@ -1,9 +1,10 @@
 aws-wsgi
 # AWS SDK for Python in Python 3.8 AWS Lambda Runtime
 # https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
-boto3==1.12.22
-botocore==1.15.22
+boto3==1.12.49
+botocore==1.15.49
 django
+django-lgi
 argon2-cffi
 environs[django]
 psycopg2-binary

@@ -42,13 +42,13 @@ black==19.10b0 \
     --hash=sha256:1b30e59be925fafc1ee4565e5e08abef6b03fe455102883820fe5ee2e4734e0b \
     --hash=sha256:c2edb73a08e9e0e6f65a0e6af18b059b8b1cdd5bef997d7a0b181df93dc81539 \
     # via -r requirements/dev.in
-boto3==1.12.22 \
-    --hash=sha256:172f07391ad6bd261336cddaf988944b2d8e528a7c036d82c7841676cbc935ec \
-    --hash=sha256:e3cf4a0e1a6d79d2761b6ab050cb897a4e753f625524d15c01540f9522a11874 \
+boto3==1.12.49 \
+    --hash=sha256:5a8c918c04015147f40e498994cd85c9442f6e00b4cf87ffb04f15d6a24135f4 \
+    --hash=sha256:7b82123d25100c834b71868d60e66fca37e0691edd444fb149d004ab00bea3b4 \
     # via -c requirements/base.txt, -c requirements/test.txt, -r requirements/base.in, django-s3-storage
-botocore==1.15.22 \
-    --hash=sha256:ac6b6ae659b797f7bb106a7bee5ff1c7de9ece85e542a334a1cd618f9f2782cc \
-    --hash=sha256:b8b399828d6dfe8ee879c22aa313591c183b78a8733df437ba84d9f39cd1b219 \
+botocore==1.15.49 \
+    --hash=sha256:a474131ba7a7d700b91696a27e8cdcf1b473084addf92f90b269ebd8f5c3d3e0 \
+    --hash=sha256:b805691b4dedcb2a252f52347479ff351429624a873f001b6a1c81aca03dccee \
     # via -c requirements/base.txt, -c requirements/test.txt, -r requirements/base.in, boto3, s3transfer
 cffi==1.14.0 \
     --hash=sha256:001bf3242a1bb04d985d63e138230802c6c8d4db3668fb545fb5005ddf5bb5ff \
@@ -104,13 +104,17 @@ django-cache-url==3.1.2 \
     --hash=sha256:889ac5d56105bdf44c0fd8f82c024119e198baf0bf698fdf49b1d5de92d8d4bb \
     --hash=sha256:d0ee0d6c5daab92787bff47a4a6f5a6cf97c3c80d81a990820b2af16e12ad65a \
     # via -c requirements/base.txt, -c requirements/test.txt, environs
+django-lgi==0.1.0 \
+    --hash=sha256:95ac6b462903236efa2be598dc9bed1121ddaa0c617b2414711219f2125c8c88 \
+    --hash=sha256:e1823133c4acf944b7154cceb1235d61ee1a52c3bde1966c6dc34bcffb8a7140 \
+    # via -c requirements/base.txt, -c requirements/test.txt, -r requirements/base.in
 django-s3-storage==0.13.2 \
     --hash=sha256:f938740590ab5e5189653228e52094ddacaaf0f0faf0d719ca7a0b2391906161 \
     # via -r requirements/dev.in
 django==3.0.8 \
     --hash=sha256:31a5fbbea5fc71c99e288ec0b2f00302a0a92c44b13ede80b73a6a4d6d205582 \
     --hash=sha256:5457fc953ec560c5521b41fad9e6734a4668b7ba205832191bbdff40ec61073c \
-    # via -c requirements/base.txt, -c requirements/test.txt, -r requirements/base.in, django-s3-storage
+    # via -c requirements/base.txt, -c requirements/test.txt, -r requirements/base.in, django-lgi, django-s3-storage
 docutils==0.15.2 \
     --hash=sha256:6c4f696463b79f1fb8ba0c594b63840ebd41f059e92b31957c46b74a4599b6d0 \
     --hash=sha256:9e4d7ecfc600058e07ba661411a2b7de2fd0fafa17d1a7f7361cd47b1175c827 \
@@ -128,9 +132,9 @@ identify==1.4.21 \
     --hash=sha256:c4d07f2b979e3931894170a9e0d4b8281e6905ea6d018c326f7ffefaf20db680 \
     --hash=sha256:dac33eff90d57164e289fb20bf4e131baef080947ee9bf45efcd0da8d19064bf \
     # via pre-commit
-isort==5.0.3 \
-    --hash=sha256:3fbfad425b0a08a2969c5e1821d88785c210a08656c029c28931a1620f2d0f12 \
-    --hash=sha256:4c48d4cd773a6226baaaa176839e6f7ff82ef7c7842f6c54374fe2b14df4024b \
+isort==5.0.4 \
+    --hash=sha256:6ae9cf5414e416954e3421f861cbbfc099b3ace63cb270cc76c6670efd960a0a \
+    --hash=sha256:78661ad751751cb3c181d37302e175a0c644b3714877c073df058c596281d7fd \
     # via -r requirements/dev.in
 jmespath==0.10.0 \
     --hash=sha256:b85d0567b8666149a93172712e68920734333c0ce7e89b78b3e987f71e5ed4f9 \
@@ -282,9 +286,9 @@ urllib3==1.25.9 \
     --hash=sha256:3018294ebefce6572a474f0604c2021e33b3fd8006ecd11d62107a5d2a963527 \
     --hash=sha256:88206b0eb87e6d677d424843ac5209e3fb9d0190d0ee169599165ec25e9d9115 \
     # via -c requirements/base.txt, -c requirements/test.txt, botocore
-virtualenv==20.0.25 \
-    --hash=sha256:f332ba0b2dfbac9f6b1da9f11224f0036b05cdb4df23b228527c2a2d5504aeed \
-    --hash=sha256:ffffcb3c78a671bb3d590ac3bc67c081ea2188befeeb058870cba13e7f82911b \
+virtualenv==20.0.26 \
+    --hash=sha256:c11a475400e98450403c0364eb3a2d25d42f71cf1493da64390487b666de4324 \
+    --hash=sha256:e10cc66f40cbda459720dfe1d334c4dc15add0d80f09108224f171006a97a172 \
     # via pre-commit
 
 # WARNING: The following packages were not pinned, but pip requires them to be
