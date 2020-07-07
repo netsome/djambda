@@ -161,6 +161,8 @@ DEFAULT_FROM_EMAIL = env.str("DEFAULT_FROM_EMAIL", default="webmaster@localhost"
 # Logging
 # https://docs.djangoproject.com/en/3.1/topics/logging/
 
+LOGGING_LEVEL = env.str("LOGGING_LEVEL", default="INFO")
+
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
@@ -175,6 +177,6 @@ LOGGING = {
         "console": {"class": "logging.StreamHandler", "formatter": "verbose",},
     },
     "loggers": {
-        "django": {"handlers": ["console"], "level": "INFO", "propagate": True,},
+        "django": {"handlers": ["console"], "level": LOGGING_LEVEL, "propagate": True,},
     },
 }

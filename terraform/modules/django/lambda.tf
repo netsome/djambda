@@ -118,6 +118,7 @@ resource "aws_lambda_function" "function" {
         ENABLE_MANIFEST_STORAGE = "True"
         STATIC_URL = "https://${module.staticfiles.cf_domain_name}/${keys(local.dist_manifest)[count.index]}/"
         STATIC_ROOT = "/var/task/"
+        LOGGING_LEVEL = "DEBUG"
       },
       local.ses_config[var.enable_ses_endpoint == true ? "enabled" : "disabled"]
     )
