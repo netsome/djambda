@@ -1,4 +1,3 @@
-aws-wsgi
 # AWS SDK for Python in Python 3.8 AWS Lambda Runtime
 # https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
 boto3==1.12.49

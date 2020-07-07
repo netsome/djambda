@@ -26,10 +26,6 @@ asgiref==3.2.10 \
     --hash=sha256:7e51911ee147dd685c3c8b805c0ad0cb58d360987b56953878f8c06d2d1c6f1a \
     --hash=sha256:9fc6fb5d39b8af147ba40765234fa822b39818b12cc80b35ad9b0cef3a476aed \
     # via django
-aws-wsgi==0.2.6 \
-    --hash=sha256:3a14f2794eee8d5c303ea08cd18130183176ddef694bae6f369d0c40b3e0ddce \
-    --hash=sha256:89aaf9d11194c08c026cabbd4cdb661675861d34509754e2455567a9ceec95f4 \
-    # via -r requirements/base.in
 boto3==1.12.49 \
     --hash=sha256:5a8c918c04015147f40e498994cd85c9442f6e00b4cf87ffb04f15d6a24135f4 \
     --hash=sha256:7b82123d25100c834b71868d60e66fca37e0691edd444fb149d004ab00bea3b4 \
@@ -80,9 +76,9 @@ django-cache-url==3.1.2 \
     --hash=sha256:889ac5d56105bdf44c0fd8f82c024119e198baf0bf698fdf49b1d5de92d8d4bb \
     --hash=sha256:d0ee0d6c5daab92787bff47a4a6f5a6cf97c3c80d81a990820b2af16e12ad65a \
     # via environs
-django-lgi==0.1.1 \
-    --hash=sha256:953d66b658e06a22d953db884470db56b8a25007bed4f1a4509ca5114ca8909e \
-    --hash=sha256:b75df9bf2ca99ab8c83fc98541dc6789dea6b54d8975530afe06f5bc7d3ec97f \
+django-lgi==0.1.2 \
+    --hash=sha256:5b265c194a756107fd8fa49e79837ee0d86305f39eebfa3e30928ec15aae346a \
+    --hash=sha256:8274a117e0d24832208d8544d3edd1ed3d9346fc9443aaea96e31d2bb529b4bd \
     # via -r requirements/base.in
 django==3.0.8 \
     --hash=sha256:31a5fbbea5fc71c99e288ec0b2f00302a0a92c44b13ede80b73a6a4d6d205582 \
