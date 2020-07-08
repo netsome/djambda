@@ -2,7 +2,7 @@
 
 Djambda is an example project setting up Django application in AWS Lambda managed by Terraform.
 
-GitHub Actions create environments for [master branch](https://vp9x9htxm7.execute-api.eu-central-1.amazonaws.com/0/admin/) and [pull requests](https://vp9x9htxm7.execute-api.eu-central-1.amazonaws.com/1/admin/).
+GitHub Actions create environments for [master branch](https://qpfbkrsucb.execute-api.eu-central-1.amazonaws.com/0/admin/) and [pull requests](https://qpfbkrsucb.execute-api.eu-central-1.amazonaws.com/3/admin/).
 
 ## Setup
 
