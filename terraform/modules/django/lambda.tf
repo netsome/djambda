@@ -116,7 +116,7 @@ resource "aws_lambda_function" "function" {
       {
         ALLOWED_HOSTS = "*"
         DEBUG = "False"
-        DATABASE_URL = "postgres://${module.db.this_db_instance_username}:${module.db.this_db_instance_password}@${module.db.this_db_instance_address}:${module.db.this_db_instance_port}/${keys(local.dist_manifest)[count.index]}"
+        DATABASE_URL = "postgres://${module.db.this_db_instance_username}:${module.db.this_db_instance_password}@${module.db.this_db_instance_address}:${module.db.this_db_instance_port}/${self.function_name}"
         FORCE_SCRIPT_NAME = "/${keys(local.dist_manifest)[count.index]}/"
         DJANGO_SUPERUSER_PASSWORD=random_password.password.result
         ENABLE_MANIFEST_STORAGE = "True"
@@ -130,7 +130,7 @@ resource "aws_lambda_function" "function" {
 
   provisioner "local-exec" {
     when    = destroy
-    command = "invoke_dropdb.py ${self.function_name} ${self.function_name} --region ${var.aws_region}"
+    command = "invoke_dropdb.py ${self.function_name} ${self.function_name}"
     working_dir = "${path.module}/script/"
     interpreter = ["python"]
   }
@@ -143,7 +143,7 @@ data "aws_lambda_invocation" "createdb" {
 
   input = jsonencode(
     {
-      manage = ["createdb", "${keys(local.dist_manifest)[count.index]}", "--exist_ok"]
+      manage = ["createdb", "${self.function_name}", "--exist_ok"]
     }
   )
 }

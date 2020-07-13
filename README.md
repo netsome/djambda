@@ -19,6 +19,7 @@ GitHub Actions create environments for [master branch](https://qpfbkrsucb.execut
   * Environment Variables:
     * `AWS_ACCESS_KEY_ID`
     * `AWS_SECRET_ACCESS_KEY`
+    * `AWS_DEFAULT_REGION`
     * `GITHUB_TOKEN`
     * `GITHUB_ORGANIZATION`
 * Create [Terraform Cloud user API token](https://app.terraform.io/app/settings/tokens). You will need this later when setting up github repository.
