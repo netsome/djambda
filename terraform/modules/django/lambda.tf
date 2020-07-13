@@ -143,7 +143,7 @@ data "aws_lambda_invocation" "createdb" {
 
   input = jsonencode(
     {
-      manage = ["createdb", "${self.function_name}", "--exist_ok"]
+      manage = ["createdb", "${var.lambda_function_name}_${keys(local.dist_manifest)[count.index]}", "--exist_ok"]
     }
   )
 }
