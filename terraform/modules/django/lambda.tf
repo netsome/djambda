@@ -48,6 +48,7 @@ resource "aws_iam_role_policy_attachment" "attach_base_policy" {
 }
 
 data "aws_iam_policy_document" "ses" {
+  count = var.enable_ses_endpoint ? 1 : 0
   statement {
     actions   = ["ses:SendRawEmail"]
     resources = ["*"]
@@ -56,19 +57,22 @@ data "aws_iam_policy_document" "ses" {
 }
 
 resource "aws_iam_user" "ses" {
+  count = var.enable_ses_endpoint ? 1 : 0
   name          = "ses"
 }
 
 # Defines a user that should be able to send send emails
 resource "aws_iam_user_policy" "ses" {
-  name   = aws_iam_user.ses.name
-  user   = aws_iam_user.ses.name
-  policy = data.aws_iam_policy_document.ses.json
+  count = var.enable_ses_endpoint ? 1 : 0
+  name   = aws_iam_user.ses[0].name
+  user   = aws_iam_user.ses[0].name
+  policy = data.aws_iam_policy_document.ses[0].json
 }
 
 # Generate API credentials
 resource "aws_iam_access_key" "ses" {
-  user  = aws_iam_user.ses.name
+  count = var.enable_ses_endpoint ? 1 : 0
+  user  = aws_iam_user.ses[0].name
 }
 
 locals {
@@ -77,8 +81,8 @@ locals {
       ENABLE_SMTP_EMAIL_BACKEND = "True"
       EMAIL_HOST = "email-smtp.${var.aws_region}.amazonaws.com"
       EMAIL_PORT = "587"
-      EMAIL_HOST_USER = aws_iam_access_key.ses.id
-      EMAIL_HOST_PASSWORD = aws_iam_access_key.ses.ses_smtp_password_v4
+      EMAIL_HOST_USER = var.enable_ses_endpoint ? aws_iam_access_key.ses[0].id : ""
+      EMAIL_HOST_PASSWORD = var.enable_ses_endpoint ? aws_iam_access_key.ses[0].ses_smtp_password_v4 : ""
       EMAIL_USE_TLS = "True"
       DEFAULT_FROM_EMAIL = var.default_from_email
     }
@@ -177,7 +181,7 @@ resource "aws_lambda_permission" "apigwv2" {
 
   # The "/*/*" portion grants access from any method on any resource
   # within the API Gateway REST API.
-  source_arn = "${aws_apigatewayv2_api.lambda.execution_arn}/*/*"
+  source_arn = "${aws_apigatewayv2_api.lambda[0].execution_arn}/*/*"
 }
 
 resource "aws_lambda_provisioned_concurrency_config" "main" {

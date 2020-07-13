@@ -1,10 +1,12 @@
 resource "aws_apigatewayv2_api" "lambda" {
+  count = var.create_lambda_function && var.enable_api_gatewayv2 ? 1 : 0
   name          = "${var.lambda_function_name}_${var.stage}_gatewayv2"
   protocol_type = "HTTP"
 }
 
 resource "aws_apigatewayv2_integration" "lambda" {
-  api_id           = aws_apigatewayv2_api.lambda.id
+  count = var.create_lambda_function && var.enable_api_gatewayv2 ? 1 : 0
+  api_id           = aws_apigatewayv2_api.lambda[0].id
   integration_type = "AWS_PROXY"
 
   connection_type           = "INTERNET"
@@ -15,15 +17,16 @@ resource "aws_apigatewayv2_integration" "lambda" {
 }
 
 resource "aws_apigatewayv2_route" "lambda" {
-  api_id    = aws_apigatewayv2_api.lambda.id
+  count = var.create_lambda_function && var.enable_api_gatewayv2 ? 1 : 0
+  api_id    = aws_apigatewayv2_api.lambda[0].id
   route_key = "$default"
 
-  target = "integrations/${aws_apigatewayv2_integration.lambda.id}"
+  target = "integrations/${aws_apigatewayv2_integration.lambda[0].id}"
 }
 
 resource "aws_apigatewayv2_stage" "lambda" {
   count = var.create_lambda_function && var.enable_api_gatewayv2 ? length(keys(local.dist_manifest)) : 0
-  api_id = aws_apigatewayv2_api.lambda.id
+  api_id = aws_apigatewayv2_api.lambda[0].id
   name   = keys(local.dist_manifest)[count.index]
   auto_deploy = true
   stage_variables = {
@@ -33,7 +36,7 @@ resource "aws_apigatewayv2_stage" "lambda" {
 
 resource "aws_apigatewayv2_deployment" "lambda" {
   count = var.create_lambda_function && var.enable_api_gatewayv2 ? 1 : 0
-  api_id      = aws_apigatewayv2_api.lambda.id
+  api_id      = aws_apigatewayv2_api.lambda[0].id
 
   lifecycle {
     create_before_destroy = true
