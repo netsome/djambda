@@ -130,9 +130,8 @@ resource "aws_lambda_function" "function" {
 
   provisioner "local-exec" {
     when    = destroy
-    command = "invoke_dropdb.py ${self.function_name} ${self.function_name}"
-    working_dir = "${path.module}/script/"
-    interpreter = ["python"]
+    command = "./script/invoke_dropdb.py ${self.function_name} ${self.function_name}"
+    working_dir = path.module
   }
 }
 

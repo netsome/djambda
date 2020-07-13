@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import argparse
 import base64
 import datetime
@@ -6,8 +7,12 @@ import hmac
 import json
 import os
 import sys
-import urllib.parse
-import urllib.request
+
+try:
+    from urllib.request import urlopen, Request
+    from urllib.error import HTTPError
+except ImportError:
+    from urllib2 import urlopen, Request, HTTPError
 
 
 def sign(key, msg):
@@ -176,14 +181,12 @@ def main(args=None):
     data_dict = {"manage": ["dropdb", args.db_name]}
     data = json.dumps(data_dict)
     headers = create_headers(access_key, secret_key, region, args.function_name, data)
-    request = urllib.request.Request(
-        endpoint, data=data.encode("ascii"), headers=headers
-    )
+    request = Request(endpoint, data=data.encode("ascii"), headers=headers)
     try:
-        with urllib.request.urlopen(request) as response:
-            content = response.read()
-            print(content)
-    except urllib.error.HTTPError as e:
+        response = urlopen(request)
+        content = response.read()
+        print(content)
+    except HTTPError as e:
         print(e.code)
         print(e.read())
 
