@@ -116,7 +116,7 @@ resource "aws_lambda_function" "function" {
       {
         ALLOWED_HOSTS = "*"
         DEBUG = "False"
-        DATABASE_URL = "postgres://${module.db.this_db_instance_username}:${module.db.this_db_instance_password}@${module.db.this_db_instance_address}:${module.db.this_db_instance_port}/${self.function_name}"
+        DATABASE_URL = "postgres://${module.db.this_db_instance_username}:${module.db.this_db_instance_password}@${module.db.this_db_instance_address}:${module.db.this_db_instance_port}/${var.lambda_function_name}_${keys(local.dist_manifest)[count.index]}"
         FORCE_SCRIPT_NAME = "/${keys(local.dist_manifest)[count.index]}/"
         DJANGO_SUPERUSER_PASSWORD=random_password.password.result
         ENABLE_MANIFEST_STORAGE = "True"
