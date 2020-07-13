@@ -130,7 +130,9 @@ resource "aws_lambda_function" "function" {
 
   provisioner "local-exec" {
     when    = destroy
-    command = "echo 'TODO: Destroy db and staticfiles'"
+    command = "invoke_dropdb.py ${self.function_name} ${self.function_name} --region ${var.aws_region}"
+    working_dir = "${path.module}/script/"
+    interpreter = ["python"]
   }
 }
 
