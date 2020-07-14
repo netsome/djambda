@@ -82,6 +82,9 @@ requirements: $(PRE_DEV_TARGET)
 collectstatic: $(PRE_DEV_TARGET)
 	$(if $(PRE_DEV_TARGET),$(DOCKER_RUN_DEV)) python src/manage.py collectstatic --noinput
 
+deletestatic: $(PRE_DEPLOY_TARGET)
+	$(if $(PRE_DEPLOY_TARGET),$(DOCKER_RUN_DEPLOY)) python /script/deletestatic.py "$(AWS_S3_BUCKET_NAME_STATIC)" "$(DEPLOYMENT_STAGE_NAME)"
+
 deploy: $(PRE_DEPLOY_TARGET)
 	$(if $(PRE_DEPLOY_TARGET),$(DOCKER_RUN_DEPLOY)) python /script/deploy.py "$(AWS_S3_BUCKET_NAME_DEPLOY)" "$(DEPLOYMENT_STAGE_NAME)" --dist dist/app.pyz
 
