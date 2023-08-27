@@ -1,9 +1,9 @@
 terraform {
   backend "remote" {
-    organization = "netsome"
+    organization = "djambda"
 
     workspaces {
-      name = "djambda"
+      name = "test"
     }
   }
 }
