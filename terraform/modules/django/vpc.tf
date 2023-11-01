@@ -27,7 +27,7 @@ data "aws_security_group" "default" {
 
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
-  version = "2.77.0"
+  version = "3.19.0"
 
   name = module.vpc_label.id
 
@@ -46,10 +46,10 @@ module "vpc" {
   enable_s3_endpoint = var.enable_s3_endpoint
 
   # VPC endpoint for DynamoDB
-  enable_dynamodb_endpoint = var.enable_dynamodb_endpoint
+  enable_dynamodb_endpoint = false
 
   # VPC endpoint for SES
-  enable_ses_endpoint = var.enable_ses_endpoint
+  enable_ses_endpoint = false
   ses_endpoint_private_dns_enabled = var.enable_ses_endpoint
   ses_endpoint_security_group_ids  = var.enable_ses_endpoint ? [data.aws_security_group.default.id] : []
 
