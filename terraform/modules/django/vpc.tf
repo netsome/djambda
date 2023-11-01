@@ -1,5 +1,5 @@
 module "vpc_label" {
-  source     = "git::https://github.com/cloudposse/terraform-null-label.git?ref=0.16.0"
+  source     = "git::https://github.com/cloudposse/terraform-null-label.git?ref=0.25.0"
   namespace  = var.lambda_function_name
   stage      = var.stage
   name       = "vpc"
@@ -33,7 +33,7 @@ module "vpc" {
 
   cidr = "20.10.0.0/16"
 
-  azs                 = ["eu-central-1a", "eu-central-1b", "eu-central-1c"]
+  azs                 = ["us-east-1a", "us-east-1b", "us-east-1c"]
   private_subnets     = ["20.10.1.0/24", "20.10.2.0/24", "20.10.3.0/24"]
   database_subnets    = ["20.10.21.0/24", "20.10.22.0/24", "20.10.23.0/24"]
 
