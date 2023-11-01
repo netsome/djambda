@@ -1,5 +1,5 @@
 module "vpc_label" {
-  source     = "git::https://github.com/cloudposse/terraform-null-label.git?ref=0.20.0"
+  source     = "git::https://github.com/cloudposse/terraform-null-label.git?ref=0.25.0"
   namespace  = var.lambda_function_name
   stage      = var.stage
   name       = "vpc"
@@ -27,7 +27,7 @@ data "aws_security_group" "default" {
 
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
-  version = "~> v2.0"
+  version = "=4.67.0"
 
   name = module.vpc_label.id
 
