@@ -42,21 +42,5 @@ module "vpc" {
   enable_dns_hostnames = true
   enable_dns_support   = true
 
-  # VPC endpoint for S3
-  enable_s3_endpoint = var.enable_s3_endpoint
-
-  # VPC endpoint for DynamoDB
-  enable_dynamodb_endpoint = false
-
-  # VPC endpoint for SES
-  enable_ses_endpoint = false
-  ses_endpoint_private_dns_enabled = var.enable_ses_endpoint
-  ses_endpoint_security_group_ids  = var.enable_ses_endpoint ? [data.aws_security_group.default.id] : []
-
-  # VPC endpoint for SQS
-  # enable_sqs_endpoint              = true
-  # sqs_endpoint_private_dns_enabled = true
-  # sqs_endpoint_security_group_ids  = [module.prod_sg.this_security_group_id]
-
   tags   = module.vpc_label.tags
 }
