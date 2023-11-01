@@ -27,7 +27,7 @@ data "aws_security_group" "default" {
 
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
-  version = "=2.77.0"
+  version = "2.77.0"
 
   name = module.vpc_label.id
 
