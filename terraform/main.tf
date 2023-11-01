@@ -1,6 +1,6 @@
 terraform {
   backend "remote" {
-    organization = "netsome"
+    organization = "ensembletf"
 
     workspaces {
       name = "djambda"
