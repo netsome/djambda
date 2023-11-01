@@ -2,7 +2,7 @@
 -r test.in
 
 black
-django-s3-storage==1.13.2
+django-s3-storage
 isort
 pip-tools
 pre-commit
