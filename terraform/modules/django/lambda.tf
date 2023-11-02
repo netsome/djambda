@@ -78,7 +78,7 @@ resource "aws_iam_access_key" "ses" {
 locals {
   ses_config = {
     enabled = {
-      ENABLE_SMTP_EMAIL_BACKEND = "True"
+      ENABLE_SMTP_EMAIL_BACKEND = "False"
       EMAIL_HOST = "email-smtp.${var.aws_region}.amazonaws.com"
       EMAIL_PORT = "587"
       EMAIL_HOST_USER = var.enable_ses_endpoint ? aws_iam_access_key.ses[0].id : ""

@@ -15,7 +15,7 @@ module "sg" {
   egress_ipv6_cidr_blocks = []
   egress_cidr_blocks = []
 
-  egress_prefix_list_ids = [module.vpc.vpc_endpoint_ses_id]
+  egress_prefix_list_ids = []
 
   tags = module.vpc_label.tags
 }
