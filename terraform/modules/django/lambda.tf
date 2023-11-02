@@ -108,8 +108,7 @@ resource "aws_lambda_function" "function" {
 
   vpc_config {
     subnet_ids = module.vpc.private_subnets
-    security_group_ids = [data.aws_security_group.default.id]
-    #security_group_ids = [data.aws_security_group.default.id, module.postgresql_security_group.security_group_id]
+    security_group_ids = [data.aws_security_group.default.id, module.postgresql_security_group.security_group_id]
   }
 
   environment {
