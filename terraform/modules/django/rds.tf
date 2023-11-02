@@ -34,7 +34,7 @@ resource "random_password" "password" {
 
 module "db" {
   source = "terraform-aws-modules/rds/aws"
-  version = "2.35.0"
+  version = "~> 2.0"
 
   identifier = "lambda-postgres"
 
