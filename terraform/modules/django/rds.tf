@@ -19,7 +19,7 @@ locals {
   port              = "5432"
   engine            = "postgres"
   engine_version    = "15.4"
-  instance_class    = "db.t2.micro"
+  instance_class    = "db.t3.micro"
   allocated_storage = 5
   storage_encrypted = false
 }
