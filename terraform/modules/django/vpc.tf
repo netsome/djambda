@@ -45,8 +45,8 @@ module "vpc" {
   tags   = module.vpc_label.tags
 }
 
-resource "aws_security_group" "default" {
-  name        = "default"
+resource "aws_security_group" "mysg" {
+  name        = "mysg"
   description = "default VPC security group"
   vpc_id      = module.vpc.default_vpc_id
 
