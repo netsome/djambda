@@ -7,7 +7,7 @@ module "vpc_label" {
 
 module "sg" {
   source  = "terraform-aws-modules/security-group/aws"
-  version = "~> 3.0"
+  version = "~> 5.0"
 
   vpc_id = module.vpc.vpc_id
   name   = module.vpc_label.id
