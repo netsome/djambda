@@ -21,6 +21,7 @@ locals {
   engine_version    = "11.5"
   instance_class    = "db.t2.micro"
   allocated_storage = 5
+  storage_encrypted = false
 }
 
 
@@ -43,6 +44,7 @@ module "db" {
   instance_class     = local.instance_class
   create_db_instance = var.create_db_instance
   allocated_storage  = local.allocated_storage
+  storage_encrypted  = local.storage_encrypted
 
   db_name  = "lambda"
   username = "lambda"
