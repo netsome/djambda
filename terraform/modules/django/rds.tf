@@ -34,7 +34,7 @@ resource "random_password" "password" {
 
 module "db" {
   source = "terraform-aws-modules/rds/aws"
-  version = "4.7.0"
+  version = "2.35.0"
 
   identifier = "lambda-postgres"
 
@@ -44,7 +44,7 @@ module "db" {
   create_db_instance = var.create_db_instance
   allocated_storage  = local.allocated_storage
 
-  db_name  = "lambda"
+  name  = "lambda"
   username = "lambda"
   password = random_password.password.result
   port     = "5432"
