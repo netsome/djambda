@@ -44,7 +44,7 @@ module "db" {
   create_db_instance = var.create_db_instance
   allocated_storage  = local.allocated_storage
 
-  name     = "lambda"
+  db_name  = "lambda"
   username = "lambda"
   password = random_password.password.result
   port     = "5432"
