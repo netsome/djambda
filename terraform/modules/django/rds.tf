@@ -1,15 +1,15 @@
 #########################
 # Database security group
 #########################
-module "postgresql_security_group" {
-  source  = "terraform-aws-modules/security-group/aws//modules/postgresql"
-  version = "~> 5.0"
+#module "postgresql_security_group" {
+#  source  = "terraform-aws-modules/security-group/aws//modules/postgresql"
+#  version = "~> 5.0"
 
-  name = "database_sg"
-  vpc_id = module.vpc.vpc_id
+#  name = "database_sg"
+#  vpc_id = module.vpc.vpc_id
 
-  ingress_cidr_blocks = ["0.0.0.0/0"]
-}
+#  ingress_cidr_blocks = ["0.0.0.0/0"]
+#}
 
 
 ####################################
@@ -52,7 +52,7 @@ module "db" {
   password = var.db_password
   port     = "5432"
 
-  vpc_security_group_ids = ["${module.postgresql_security_group.security_group_id}"]
+  vpc_security_group_ids = [aws_security_group.default.id]
 
   maintenance_window     = "Mon:00:00-Mon:03:00"
   backup_window          = "03:00-06:00"
