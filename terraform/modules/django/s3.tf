@@ -9,12 +9,12 @@ module "s3_bucket_app" {
   namespace              = var.lambda_function_name
 }
 
-data "aws_s3_bucket_objects" "dist" {
+data "aws_s3_objects" "dist" {
   bucket = module.s3_bucket_app.bucket_id
   prefix = "dist"
 }
 
-data "aws_s3_bucket_object" "manifest" {
+data "aws_s3_object" "manifest" {
   count = var.create_lambda_function ? 1 : 0
   bucket = module.s3_bucket_app.bucket_id
   key = "manifest.json"
@@ -22,7 +22,7 @@ data "aws_s3_bucket_object" "manifest" {
 
 locals {
   # jsondecode orders manifest
-  dist_manifest = var.create_lambda_function ? jsondecode(data.aws_s3_bucket_object.manifest[0].body) : {}
+  dist_manifest = var.create_lambda_function ? jsondecode(data.aws_s3_object.manifest[0].body) : {}
 }
 
 module "staticfiles" {

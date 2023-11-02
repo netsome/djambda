@@ -7,4 +7,5 @@ module "django" {
   create_lambda_function = false
   default_from_email     = var.default_from_email
   enable_api_gatewayv2   = true
+  db_password            = var.db_password
 }

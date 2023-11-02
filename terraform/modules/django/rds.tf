@@ -34,7 +34,7 @@ resource "random_password" "password" {
 
 module "db" {
   source = "terraform-aws-modules/rds/aws"
-  version = "~> 2.0"
+  version = "6.2.0"
 
   identifier = "lambda-postgres"
 
@@ -44,9 +44,10 @@ module "db" {
   create_db_instance = var.create_db_instance
   allocated_storage  = local.allocated_storage
 
-  name  = "lambda"
+  db_name  = "lambda"
   username = "lambda"
-  password = random_password.password.result
+  #password = random_password.password.result
+  password = var.db_password
   port     = "5432"
 
   vpc_security_group_ids = [module.postgresql_security_group.this_security_group_id]
@@ -63,7 +64,6 @@ module "db" {
   create_db_option_group    = false
   create_db_parameter_group = false
 }
-
 
 ############
 # Replica DB
