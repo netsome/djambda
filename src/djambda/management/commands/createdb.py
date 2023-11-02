@@ -5,7 +5,7 @@ from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 
 
 class Command(BaseCommand):
-    help = "Creates database"
+    help = "Creates database command"
 
     def add_arguments(self, parser):
         parser.add_argument("db_name")
