@@ -40,6 +40,8 @@ PRE_BUILD_TARGET ?= build-build-image
 PRE_DEV_TARGET ?= build-dev-image
 PRE_DEPLOY_TARGET ?= build-dep-image
 
+$(info    DEV_ENVS is $(DEV_ENVS))
+
 default: app
 
 ## Build Build Docker image
