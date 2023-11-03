@@ -40,7 +40,8 @@ PRE_BUILD_TARGET ?= build-build-image
 PRE_DEV_TARGET ?= build-dev-image
 PRE_DEPLOY_TARGET ?= build-dep-image
 
-$(info    DEV_ENVS is $(DEV_ENVS))
+$(info    AWS_S3_ACCESS_KEY_ID_STATIC is $(AWS_S3_ACCESS_KEY_ID_STATIC))
+$(info    AWS_S3_SECRET_ACCESS_KEY_STATIC is $(AWS_S3_SECRET_ACCESS_KEY_STATIC))
 
 default: app
 
