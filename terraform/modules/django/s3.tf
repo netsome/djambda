@@ -35,6 +35,7 @@ module "staticfiles" {
   cors_allowed_methods     = ["GET", "HEAD", "PUT"]
   cors_allowed_origins     = ["*"]
   cors_expose_headers      = ["ETag"]
+  allow_ssl_requests_only  = false
 }
 
 module "s3_user_staticfiles" {
