@@ -10,3 +10,4 @@ psycopg2-binary
 urllib3==1.26.7
 pip==22.0.4
 pip-tools==5.4.0
+backports.zoneinfo==0.2.1
