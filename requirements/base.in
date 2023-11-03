@@ -7,3 +7,4 @@ django-lgi
 argon2-cffi
 environs[django]
 psycopg2-binary
+python3.8-distutils
