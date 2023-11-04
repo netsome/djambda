@@ -1,8 +1,9 @@
 -c test.txt
 -r test.in
 
-black
-django-s3-storage
-isort
-pre-commit
-pip-tools
+black==23.10.1
+django-s3-storage==0.14.0
+isort==5.12.0
+pre-commit==3.5.0
+pip-tools==7.3.0
+pip==23.3.1
