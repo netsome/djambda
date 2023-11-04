@@ -5,3 +5,4 @@ black
 django-s3-storage
 isort
 pre-commit
+pip-tools

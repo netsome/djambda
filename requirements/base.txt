@@ -35,31 +35,13 @@ asgiref==3.7.2 \
     --hash=sha256:89b2ef2247e3b562a16eef663bc0e2e703ec6468e2fa8a5cd61cd449786d4f6e \
     --hash=sha256:9e0ce3aa93a819ba5b45120216b23878cf6e8525eb3848653452b4192b92afed
     # via django
-backports-zoneinfo==0.2.1 \
-    --hash=sha256:17746bd546106fa389c51dbea67c8b7c8f0d14b5526a579ca6ccf5ed72c526cf \
-    --hash=sha256:1b13e654a55cd45672cb54ed12148cd33628f672548f373963b0bff67b217328 \
-    --hash=sha256:1c5742112073a563c81f786e77514969acb58649bcdf6cdf0b4ed31a348d4546 \
-    --hash=sha256:4a0f800587060bf8880f954dbef70de6c11bbe59c673c3d818921f042f9954a6 \
-    --hash=sha256:5c144945a7752ca544b4b78c8c41544cdfaf9786f25fe5ffb10e838e19a27570 \
-    --hash=sha256:7b0a64cda4145548fed9efc10322770f929b944ce5cee6c0dfe0c87bf4c0c8c9 \
-    --hash=sha256:8439c030a11780786a2002261569bdf362264f605dfa4d65090b64b05c9f79a7 \
-    --hash=sha256:8961c0f32cd0336fb8e8ead11a1f8cd99ec07145ec2931122faaac1c8f7fd987 \
-    --hash=sha256:89a48c0d158a3cc3f654da4c2de1ceba85263fafb861b98b59040a5086259722 \
-    --hash=sha256:a76b38c52400b762e48131494ba26be363491ac4f9a04c1b7e92483d169f6582 \
-    --hash=sha256:da6013fd84a690242c310d77ddb8441a559e9cb3d3d59ebac9aca1a57b2e18bc \
-    --hash=sha256:e55b384612d93be96506932a786bbcde5a2db7a9e6a4bb4bffe8b733f5b9036b \
-    --hash=sha256:e81b76cace8eda1fca50e345242ba977f9be6ae3945af8d46326d776b4cf78d1 \
-    --hash=sha256:e8236383a20872c0cdf5a62b554b27538db7fa1bbec52429d8d106effbaeca08 \
-    --hash=sha256:f04e857b59d9d1ccc39ce2da1021d196e47234873820cbeaad210724b1ee28ac \
-    --hash=sha256:fadbfe37f74051d024037f223b8e001611eac868b5c5b06144ef4d8b799862f2
+boto3==1.28.78 \
+    --hash=sha256:aa970b1571321846543a6e615848352fe7621f1cb96b4454e919421924af95f7 \
+    --hash=sha256:ff8df4bb5aeb69acc64959a74b31042bfc52d64ca77dbe845a72c8062c48d179
     # via -r requirements/base.in
-boto3==1.28.77 \
-    --hash=sha256:1a47e5b8faea527bb2a40d0cf58faf0d09b5a46cf5658e2c5729479af20c96b8 \
-    --hash=sha256:c0899e54df362bea0ae329da59b0a00e4be5e220e99dc764802ed83cdfc4285c
-    # via -r requirements/base.in
-botocore==1.31.77 \
-    --hash=sha256:4c5c9562b5d1fb8355314ddf37142edf3f6abd7526f4a68cc1b6cd79bdda48ec \
-    --hash=sha256:509168151f8a0e1b8296031a7fc7822d59d027865d3baa86917682b311a74d26
+botocore==1.31.78 \
+    --hash=sha256:320c70bc412157813c2cf60217a592b4b345f8e97e4bf3b1ce49b6be69ed8965 \
+    --hash=sha256:a9ca8deeb3f47a10a25637859fee8d81cac2db37ace819d24471279e44879547
     # via
     #   -r requirements/base.in
     #   boto3
@@ -118,10 +100,6 @@ cffi==1.16.0 \
     --hash=sha256:fa3a0128b152627161ce47201262d3140edb5a5c3da88d73a1b790a959126956 \
     --hash=sha256:fcc8eb6d5902bb1cf6dc4f187ee3ea80a1eba0a89aba40a5cb20a5087d961357
     # via argon2-cffi-bindings
-click==8.1.7 \
-    --hash=sha256:ae74fb96c20a0277a1d615f1e4d73c8414f5a98db8b799a7931d1582f3390c28 \
-    --hash=sha256:ca9853ad459e787e2192211578cc907e7594e294c7ccc834310722b41b9ca6de
-    # via pip-tools
 dj-database-url==2.1.0 \
     --hash=sha256:04bc34b248d4c21aaa13e4ab419ae6575ef5f10f3df735ce7da97722caa356e0 \
     --hash=sha256:f2042cefe1086e539c9da39fad5ad7f61173bf79665e69bf7e4de55fa88b135f
@@ -163,10 +141,6 @@ packaging==23.2 \
     --hash=sha256:048fb0e9405036518eaaf48a55953c750c11e1a1b68e0dd1a9d62ed0c092cfc5 \
     --hash=sha256:8c491190033a9af7e1d931d0b5dacc2ef47509b34dd0de67ed209b5203fc88c7
     # via marshmallow
-pip-tools==5.4.0 \
-    --hash=sha256:a4d3990df2d65961af8b41dacc242e600fdc8a65a2e155ed3d2fc18a5c209f20 \
-    --hash=sha256:b73f76fe6464b95e41d595a9c0302c55a786dbc54b63ae776c540c04e31914fb
-    # via -r requirements/base.in
 psycopg2-binary==2.9.9 \
     --hash=sha256:03ef7df18daf2c4c07e2695e8cfd5ee7f748a1d54d802330985a78d2a5a6dca9 \
     --hash=sha256:0a602ea5aff39bb9fac6308e9c9d82b9a35c2bf288e184a816002c9fae930b77 \
@@ -260,9 +234,7 @@ s3transfer==0.7.0 \
 six==1.16.0 \
     --hash=sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926 \
     --hash=sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254
-    # via
-    #   pip-tools
-    #   python-dateutil
+    # via python-dateutil
 sqlparse==0.4.4 \
     --hash=sha256:5430a4fe2ac7d0f93e66f1efc6e1338a41884b7ddf2a350cedd20ccc4d9d28f3 \
     --hash=sha256:d446183e84b8349fa3061f0fe7f06ca94ba65b426946ffebe6e3e8295332420c
@@ -273,14 +245,7 @@ typing-extensions==4.8.0 \
     # via
     #   asgiref
     #   dj-database-url
-urllib3==1.26.7 \
-    --hash=sha256:4987c65554f7a2dbf30c18fd48778ef124af6fab771a377103da0585e2336ece \
-    --hash=sha256:c4fdf4019605b6e5423637e01bc9fe4daef873709a7973e195ceba0a62bbc844
-    # via
-    #   -r requirements/base.in
-    #   botocore
-
-# WARNING: The following packages were not pinned, but pip requires them to be
-# pinned when the requirements file includes hashes and the requirement is not
-# satisfied by a package already installed. Consider using the --allow-unsafe flag.
-# pip
+urllib3==2.0.7 \
+    --hash=sha256:c97dfde1f7bd43a71c8d2a58e369e9b2bf692d1334ea9f9cae55add7d0dd0f84 \
+    --hash=sha256:fdb6d215c776278489906c2f8916e6e7d4f5a9b602ccbcfdf7f016fc8da0596e
+    # via botocore

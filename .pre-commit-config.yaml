@@ -2,14 +2,14 @@
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.4.0
+    rev: v3.5.0
     hooks:
     -   id: trailing-whitespace
     -   id: end-of-file-fixer
     -   id: check-yaml
     -   id: check-added-large-files
 -   repo: https://github.com/jazzband/pip-tools
-    rev: 5.1.2
+    rev: v7.3.0
     hooks:
     -   id: pip-compile
         files: ^requirements/prod\.(in|txt)$
@@ -19,10 +19,10 @@ repos:
     hooks:
     -   id: seed-isort-config
 -   repo: https://github.com/timothycrosley/isort
-    rev: 4.3.21-2
+    rev: v5.12.0
     hooks:
     -   id: isort
 -   repo: https://github.com/psf/black
-    rev: stable
+    rev: v23.10.1
     hooks:
     -   id: black
