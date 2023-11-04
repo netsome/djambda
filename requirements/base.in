@@ -8,3 +8,4 @@ argon2-cffi
 environs[django]
 psycopg2-binary
 urllib3==1.26.7
+importlib-metadata==4.6
