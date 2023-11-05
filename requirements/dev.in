@@ -7,3 +7,4 @@ isort
 pip-tools
 pre-commit
 importlib-metadata==4.6
+pip==22.2
