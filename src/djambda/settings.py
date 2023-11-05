@@ -120,14 +120,15 @@ STATIC_ROOT = env.str("STATIC_ROOT", default=None)
 
 if env.bool("ENABLE_S3_STORAGE", default=False):
     # https://github.com/etianen/django-s3-storage
-    STATICFILES_STORAGE = "django_s3_storage.storage.ManifestStaticS3Storage"
-    AWS_ACCESS_KEY_ID = env.str("AWS_S3_ACCESS_KEY_ID_STATIC")
-    AWS_SECRET_ACCESS_KEY = env.str("AWS_S3_SECRET_ACCESS_KEY_STATIC")
-    AWS_REGION = env.str("AWS_REGION_STATIC")
-    AWS_S3_BUCKET_NAME_STATIC = env.str("AWS_S3_BUCKET_NAME_STATIC")
-    AWS_S3_BUCKET_AUTH_STATIC = False
-    AWS_S3_PUBLIC_URL_STATIC = env.str("AWS_S3_PUBLIC_URL_STATIC", default="")
-    AWS_S3_KEY_PREFIX_STATIC = env.str("AWS_S3_KEY_PREFIX_STATIC", default="")
+    DEFAULT_FILE_STORAGE = "storages.backends.s3.S3Storage"
+    STATICFILES_STORAGE = "storages.backends.s3.S3Storage"
+    AWS_ACCESS_KEY_ID = env.str("AWS_S3_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = env.str("AWS_S3_SECRET_ACCESS_KEY")
+    AWS_S3_REGION_NAME = env.str("AWS_S3_REGION_NAME")
+    AWS_STORAGE_BUCKET_NAME = env.str("AWS_STORAGE_BUCKET_NAME")
+    #AWS_S3_BUCKET_AUTH_STATIC = False
+    #AWS_S3_PUBLIC_URL_STATIC = env.str("AWS_S3_PUBLIC_URL_STATIC", default="")
+    #AWS_S3_KEY_PREFIX_STATIC = env.str("AWS_S3_KEY_PREFIX_STATIC", default="")
 elif env.bool("ENABLE_MANIFEST_STORAGE", default=False):
     # https://docs.djangoproject.com/en/3.1/ref/contrib/staticfiles/#manifeststaticfilesstorage
 
