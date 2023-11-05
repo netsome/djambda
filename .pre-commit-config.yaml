@@ -2,14 +2,14 @@
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v3.5.0
+    rev: v2.6.0
     hooks:
     -   id: trailing-whitespace
     -   id: end-of-file-fixer
     -   id: check-yaml
     -   id: check-added-large-files
 -   repo: https://github.com/jazzband/pip-tools
-    rev: v7.3.0
+    rev: v5.2.1
     hooks:
     -   id: pip-compile
         files: ^requirements/prod\.(in|txt)$
