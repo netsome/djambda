@@ -5,6 +5,6 @@ black
 django-storages[s3]
 isort
 pip==23.1
-pip-tools==7.3.0
+pip-tools==5.2.1
 pre-commit
 importlib-metadata==4.6
