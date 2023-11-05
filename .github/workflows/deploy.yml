@@ -55,7 +55,7 @@ jobs:
         AWS_S3_REGION_NAME: ${{ secrets.AWS_S3_REGION_NAME_STATIC }}
         AWS_STORAGE_BUCKET_NAME: ${{ secrets.AWS_STORAGE_BUCKET_NAME_STATIC }}
         ENABLE_S3_STORAGE: "true"
-      if: ${{  env.AWS_ACCESS_KEY_ID && env.AWS_SECRET_ACCESS_KEY && env.AWS_S3_REGION_NAME && env.AWS_STORAGE_BUCKET_NAME }}
+      if: ${{  env.AWS_S3_ACCESS_KEY_ID && env.AWS_S3_SECRET_ACCESS_KEY && env.AWS_S3_REGION_NAME && env.AWS_STORAGE_BUCKET_NAME }}
       run: make collectstatic
 
   deletestatic:
