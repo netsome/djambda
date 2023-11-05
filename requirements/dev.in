@@ -6,5 +6,5 @@ django-storages[s3]
 isort
 pip==23.1
 pip-tools==5.2.1
-pre-commit
+pre-commit==2.6.0
 importlib-metadata==4.6
