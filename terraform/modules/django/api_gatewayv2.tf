@@ -37,6 +37,7 @@ resource "aws_apigatewayv2_stage" "lambda" {
 resource "aws_apigatewayv2_deployment" "lambda" {
   count = var.create_lambda_function && var.enable_api_gatewayv2 ? 1 : 0
   api_id      = aws_apigatewayv2_api.lambda[0].id
+  depends_on = [aws_apigatewayv2_route.lambda]
 
   lifecycle {
     create_before_destroy = true
