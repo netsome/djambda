@@ -151,7 +151,7 @@ data "aws_lambda_invocation" "createdb" {
 data "aws_lambda_invocation" "migrate" {
   count = length(keys(local.dist_manifest))
   function_name = "${var.lambda_function_name}_${keys(local.dist_manifest)[count.index]}"
-  depends_on = [data.aws_lambda_invocation.createdb]
+  depends_on = [aws_lambda_function.function,data.aws_lambda_invocation.createdb]
 
   input = jsonencode(
     {
