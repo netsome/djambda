@@ -3,7 +3,7 @@ variable "lambda_handler" {}
 variable "lambda_runtime" { default = "python3.8" }
 variable "create_lambda_provisioned_concurrency" { default = false }
 variable "create_db_instance" { default = true }
-variable "create_lambda_function" { default = false }
+variable "create_lambda_function" { default = true }
 variable "aws_region" {}
 variable "github_repository" { default = "" }
 variable "stage" {}
