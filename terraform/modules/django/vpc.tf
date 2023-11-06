@@ -5,25 +5,25 @@ module "vpc_label" {
   name       = "vpc"
 }
 
-#module "sg" {
-#  source  = "terraform-aws-modules/security-group/aws"
-#  version = "~> 5.0"
+module "sg" {
+  source  = "terraform-aws-modules/security-group/aws"
+  version = "~> 5.0"
 
-#  vpc_id = module.vpc.vpc_id
-#  name   = module.vpc_label.id
+  vpc_id = module.vpc.vpc_id
+  name   = module.vpc_label.id
 
-#  egress_ipv6_cidr_blocks = []
-#  egress_cidr_blocks = []
+  egress_ipv6_cidr_blocks = []
+  egress_cidr_blocks = []
 
-#  egress_prefix_list_ids = []
+  egress_prefix_list_ids = []
 
-#  tags = module.vpc_label.tags
-#}
+  tags = module.vpc_label.tags
+}
 
-#data "aws_security_group" "default" {
-#  name   = "default"
-#  vpc_id = module.vpc.vpc_id
-#}
+data "aws_security_group" "default" {
+  name   = "default"
+  vpc_id = module.vpc.vpc_id
+}
 
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
@@ -43,26 +43,4 @@ module "vpc" {
   enable_dns_support   = true
 
   tags   = module.vpc_label.tags
-}
-
-resource "aws_security_group" "mysg" {
-  name        = "mysg"
-  description = "default VPC security group"
-  vpc_id      = module.vpc.default_vpc_id
-
-  ingress {
-    from_port       = 0
-    to_port         = 0
-    protocol        = "-1"
-    security_groups = []
-    self            = true
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
 }
