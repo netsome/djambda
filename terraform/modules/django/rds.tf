@@ -48,7 +48,7 @@ module "db" {
 
   db_name  = "lambda"
   username = "lambda"
-  password = random_password.password.result
+  password = var.db_password
   port     = "5432"
 
   vpc_security_group_ids = [module.postgresql_security_group.security_group_id]
