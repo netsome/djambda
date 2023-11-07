@@ -37,7 +37,7 @@ module "vpc" {
   private_subnets     = ["20.10.1.0/24", "20.10.2.0/24", "20.10.3.0/24"]
   database_subnets    = ["20.10.21.0/24", "20.10.22.0/24", "20.10.23.0/24"]
 
-  create_database_subnet_group = true
+  create_database_subnet_group = false
 
   enable_dns_hostnames = true
   enable_dns_support   = true
