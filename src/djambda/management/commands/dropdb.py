@@ -17,6 +17,7 @@ class Command(BaseCommand):
             password=settings.DATABASES["default"]["PASSWORD"],
             host=settings.DATABASES["default"]["HOST"],
             port=settings.DATABASES["default"]["PORT"],
+            sslmode='disable'
         )
         connection.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
         try:
