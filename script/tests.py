@@ -5,7 +5,6 @@ import tempfile
 import unittest
 import unittest.mock
 
-import boto3
 import botocore
 import botocore.stub
 import deploy
