@@ -3,10 +3,10 @@ output "this_invoke_url" {
   value       = aws_api_gateway_deployment.lambda.*.invoke_url
 }
 
-output "this_createdb" {
-  description = "Result of createdb Lambda execution"
-  value       = "${data.aws_lambda_invocation.createdb.*.result}"
-}
+#output "this_createdb" {
+#  description = "Result of createdb Lambda execution"
+#  value       = "${data.aws_lambda_invocation.createdb.*.result}"
+#}
 
 output "staticfiles_access_key_id" {
   description = "The access key ID with access to staticfiles s3 bucket."
