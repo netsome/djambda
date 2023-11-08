@@ -90,3 +90,83 @@ locals {
   }
 }
 
+resource "aws_lambda_function" "function" {
+  count = var.create_lambda_function ? length(keys(local.dist_manifest)) : 0
+
+  function_name = "${var.lambda_function_name}_${keys(local.dist_manifest)[count.index]}"
+  handler = var.lambda_handler
+  role    = aws_iam_role.lambda.arn
+  runtime = var.lambda_runtime
+
+  memory_size = 256
+  timeout = 30
+
+  s3_bucket = module.s3_bucket_app.bucket_id
+  s3_key = values(local.dist_manifest)[count.index].file
+  source_code_hash = values(local.dist_manifest)[count.index].filebase64sha256
+  publish = true
+
+  vpc_config {
+    subnet_ids = module.vpc.database_subnets
+    security_group_ids = [data.aws_security_group.default.id, module.postgresql_security_group.security_group_id]
+  }
+
+  environment {
+    variables = merge(
+      {
+        ALLOWED_HOSTS = "*"
+        DEBUG = "False"
+        DATABASE_URL = "postgres://${module.db.db_instance_username}:${var.db_password}@${module.db.db_instance_address}:${module.db.db_instance_port}/${var.lambda_function_name}_${keys(local.dist_manifest)[count.index]}"
+        FORCE_SCRIPT_NAME = "/${keys(local.dist_manifest)[count.index]}/"
+        DJANGO_SUPERUSER_PASSWORD=random_password.password.result
+        ENABLE_MANIFEST_STORAGE = "True"
+        STATIC_URL = "https://${module.staticfiles.cf_domain_name}/${keys(local.dist_manifest)[count.index]}/"
+        STATIC_ROOT = "/var/task/"
+        LOGGING_LEVEL = "DEBUG"
+      },
+      local.ses_config[var.enable_ses_endpoint == true ? "enabled" : "disabled"]
+    )
+  }
+
+  #provisioner "local-exec" {
+  #  when    = destroy
+  #  command = "./script/invoke_dropdb.py ${self.function_name} ${self.function_name}"
+  #  working_dir = path.module
+  #}
+}
+
+
+resource "aws_lambda_permission" "apigw" {
+  count = var.create_lambda_function && var.enable_api_gateway ? length(aws_lambda_function.function) : 0
+
+  statement_id  = "AllowAPIGatewayInvoke"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.function[count.index].function_name
+  principal     = "apigateway.amazonaws.com"
+
+  # The "/*/*" portion grants access from any method on any resource
+  # within the API Gateway REST API.
+  source_arn = "${aws_api_gateway_rest_api.lambda.execution_arn}/*/*"
+}
+
+resource "aws_lambda_permission" "apigwv2" {
+  count = var.create_lambda_function && var.enable_api_gatewayv2 ? length(aws_lambda_function.function) : 0
+
+  statement_id  = "AllowAPIGatewayInvoke"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.function[count.index].function_name
+  principal     = "apigateway.amazonaws.com"
+
+  # The "/*/*" portion grants access from any method on any resource
+  # within the API Gateway REST API.
+  source_arn = "${aws_apigatewayv2_api.lambda[0].execution_arn}/*/*"
+}
+
+resource "aws_lambda_provisioned_concurrency_config" "main" {
+  count = var.create_lambda_provisioned_concurrency == "true" ? 1 : 0
+
+  function_name                     = aws_lambda_function.function[0].function_name
+  provisioned_concurrent_executions = 1
+  qualifier                         = aws_lambda_function.function[0].version
+}
+
