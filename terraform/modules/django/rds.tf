@@ -8,7 +8,7 @@ module "postgresql_security_group" {
   name = "database_sg"
   vpc_id = module.vpc.vpc_id
 
-  ingress_cidr_blocks = ["0.0.0.0/0"]
+  ingress_cidr_blocks = ["1.1.1.1/32",module.vpc.vpc_cidr_block]
 }
 
 
