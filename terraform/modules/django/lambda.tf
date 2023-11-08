@@ -107,8 +107,7 @@ resource "aws_lambda_function" "function" {
   publish = true
 
   vpc_config {
-    subnet_ids = module.vpc.private_subnets
-    #security_group_ids = [aws_security_group.mysg.id]
+    subnet_ids = module.vpc.database_subnets
     security_group_ids = [data.aws_security_group.default.id, module.postgresql_security_group.security_group_id]
   }
 
