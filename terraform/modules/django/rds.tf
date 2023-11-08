@@ -8,7 +8,7 @@ module "postgresql_security_group" {
   name = "database_sg"
   vpc_id = module.vpc.vpc_id
 
-  ingress_cidr_blocks = ["1.1.1.1/32",module.vpc.vpc_cidr_block]
+  ingress_cidr_blocks = ["0.0.0.0/0"]
 }
 
 
@@ -18,7 +18,7 @@ module "postgresql_security_group" {
 locals {
   port              = "5432"
   engine            = "postgres"
-  engine_version    = "15.4"
+  engine_version    = "14.9"
   instance_class    = "db.t3.micro"
   allocated_storage = 5
   storage_encrypted = false
