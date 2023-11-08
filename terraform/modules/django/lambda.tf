@@ -135,29 +135,29 @@ resource "aws_lambda_function" "function" {
   #}
 }
 
-#data "aws_lambda_invocation" "createdb" {
-#  count = length(keys(local.dist_manifest))
-#  function_name = "${var.lambda_function_name}_${keys(local.dist_manifest)[count.index]}"
-#  depends_on = [aws_lambda_function.function]
+data "aws_lambda_invocation" "createdb" {
+  count = length(keys(local.dist_manifest))
+  function_name = "${var.lambda_function_name}_${keys(local.dist_manifest)[count.index]}"
+  depends_on = [aws_lambda_function.function]
 
-#  input = jsonencode(
-#    {
-#      manage = ["createdb", "${var.lambda_function_name}_${keys(local.dist_manifest)[count.index]}", "--exist_ok"]
-#    }
-#  )
-#}
+  input = jsonencode(
+    {
+      manage = ["createdb", "${var.lambda_function_name}_${keys(local.dist_manifest)[count.index]}", "--exist_ok"]
+    }
+  )
+}
 
-#data "aws_lambda_invocation" "migrate" {
-#  count = length(keys(local.dist_manifest))
-#  function_name = "${var.lambda_function_name}_${keys(local.dist_manifest)[count.index]}"
-#  depends_on = [aws_lambda_function.function,data.aws_lambda_invocation.createdb]
+data "aws_lambda_invocation" "migrate" {
+  count = length(keys(local.dist_manifest))
+  function_name = "${var.lambda_function_name}_${keys(local.dist_manifest)[count.index]}"
+  depends_on = [aws_lambda_function.function,data.aws_lambda_invocation.createdb]
 
-#  input = jsonencode(
-#    {
-#      manage = ["migrate", "--noinput"]
-#    }
-#  )
-#}
+  input = jsonencode(
+    {
+      manage = ["migrate", "--noinput"]
+    }
+  )
+}
 
 resource "aws_lambda_permission" "apigw" {
   count = var.create_lambda_function && var.enable_api_gateway ? length(aws_lambda_function.function) : 0
