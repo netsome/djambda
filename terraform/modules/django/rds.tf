@@ -33,6 +33,43 @@ resource "random_password" "password" {
   special = false
 }
 
+module "db" {
+  source = "terraform-aws-modules/rds/aws"
+  version = "5.9.0"
+
+  identifier = "lambda-postgres"
+
+  engine             = local.engine
+  engine_version     = local.engine_version
+  instance_class     = local.instance_class
+  create_db_instance = var.create_db_instance
+  allocated_storage  = local.allocated_storage
+  storage_encrypted  = local.storage_encrypted
+
+  db_name  = "lambda"
+  username = "lambda"
+  password = var.db_password
+  create_random_password = false
+  port     = "5432"
+
+  vpc_security_group_ids = [module.postgresql_security_group.security_group_id]
+
+  maintenance_window     = "Mon:00:00-Mon:03:00"
+  backup_window          = "03:00-06:00"
+
+  # Backups are required in order to create a replica
+  backup_retention_period = 1
+
+  # DB subnet group
+  subnet_ids = module.vpc.database_subnets
+
+  create_db_option_group    = false
+  create_db_parameter_group = false
+  create_db_subnet_group    = true
+  db_subnet_group_name      = module.vpc.database_subnet_group_name
+}
+
+
 
 ############
 # Replica DB
