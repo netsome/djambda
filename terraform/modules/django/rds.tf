@@ -66,7 +66,7 @@ module "db" {
   create_db_option_group    = false
   create_db_parameter_group = false
   create_db_subnet_group    = true
-  db_subnet_group_name      = module.vpc.database_subnet_group_name
+  #db_subnet_group_name      = module.vpc.database_subnet_group_name
 }
 
 
