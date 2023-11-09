@@ -128,11 +128,11 @@ resource "aws_lambda_function" "function" {
     )
   }
 
-  provisioner "local-exec" {
-    when    = destroy
-    command = "./script/invoke_dropdb.py ${self.function_name} ${self.function_name}"
-    working_dir = path.module
-  }
+  #provisioner "local-exec" {
+  #  when    = destroy
+  #  command = "./script/invoke_dropdb.py ${self.function_name} ${self.function_name}"
+  #  working_dir = path.module
+  #}
 }
 
 resource "aws_lambda_permission" "apigw" {
