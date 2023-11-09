@@ -43,3 +43,13 @@ resource "aws_apigatewayv2_deployment" "lambda" {
     create_before_destroy = true
   }
 }
+
+resource "aws_lambda_permission" "api_gw" {
+  count = var.create_lambda_function && var.enable_api_gatewayv2 ? length(keys(local.dist_manifest)) : 0
+  statement_id  = "AllowExecutionFromAPIGateway"
+  action        = "lambda:InvokeFunction"
+  function_name = "${var.lambda_function_name}_${keys(local.dist_manifest)[count.index]}"
+  principal     = "apigateway.amazonaws.com"
+
+  source_arn = "${aws_apigatewayv2_api.lambda[count.index].execution_arn}/*/*"
+}
