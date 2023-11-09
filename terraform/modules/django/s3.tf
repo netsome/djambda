@@ -38,7 +38,7 @@ module "staticfiles" {
   cors_allowed_headers     = ["*"]
   cors_allowed_methods     = ["GET", "HEAD", "PUT"]
   cors_allowed_origins     = ["*"]
-  cors_expose_headers      = ["ETag"]
+  cors_expose_headers      = ["ETag","Content-Range","Content-Length"]
   allow_ssl_requests_only  = false
 }
 
