@@ -12,6 +12,7 @@ class Command(BaseCommand):
         parser.add_argument("--exist_ok", action="store_true")
 
     def handle(self, *args, **options):
+        print(settings.DATABASES)
         connection = psycopg2.connect(
             user=settings.DATABASES["default"]["USER"],
             password=settings.DATABASES["default"]["PASSWORD"],
