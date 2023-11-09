@@ -120,7 +120,8 @@ resource "aws_lambda_function" "function" {
         FORCE_SCRIPT_NAME = "/${keys(local.dist_manifest)[count.index]}/"
         DJANGO_SUPERUSER_PASSWORD=random_password.password.result
         ENABLE_MANIFEST_STORAGE = "True"
-        STATIC_URL = "https://${module.staticfiles.cf_domain_name}/${keys(local.dist_manifest)[count.index]}/"
+        #STATIC_URL = "https://${module.staticfiles.cf_domain_name}/${keys(local.dist_manifest)[count.index]}/"
+        STATIC_URL = "https://${module.staticfiles.cf_domain_name}/"
         STATIC_ROOT = "/var/task/"
         LOGGING_LEVEL = "DEBUG"
       },
