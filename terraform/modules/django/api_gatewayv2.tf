@@ -48,8 +48,8 @@ resource "aws_lambda_permission" "api_gw" {
   count = var.create_lambda_function && var.enable_api_gatewayv2 ? length(keys(local.dist_manifest)) : 0
   statement_id  = "AllowExecutionFromAPIGateway"
   action        = "lambda:InvokeFunction"
-  function_name = "${var.lambda_function_name}_${keys(local.dist_manifest)[count.index]}"
+  function_name = "${var.lambda_function_name}_${keys(local.dist_manifest)[0]}"
   principal     = "apigateway.amazonaws.com"
 
-  source_arn = "${aws_apigatewayv2_api.lambda[count.index].execution_arn}/*/*"
+  source_arn = "${aws_apigatewayv2_api.lambda[0].execution_arn}/*/*"
 }
