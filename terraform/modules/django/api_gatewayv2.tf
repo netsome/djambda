@@ -12,7 +12,8 @@ resource "aws_apigatewayv2_integration" "lambda" {
   connection_type           = "INTERNET"
   # https://github.com/amazon-archives/aws-apigateway-importer/issues/9#issuecomment-129651005
   integration_method        = "POST"
-  integration_uri           = "arn:aws:apigateway:${var.aws_region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${var.aws_region}:${data.aws_caller_identity.current.account_id}:function:$${stageVariables.lambdaFunctionName}/invocations"
+  #integration_uri           = "arn:aws:apigateway:${var.aws_region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${var.aws_region}:${data.aws_caller_identity.current.account_id}:function:$${stageVariables.lambdaFunctionName}/invocations"
+  integration_uri           = aws_lambda_function.function[0].invoke_arn
   payload_format_version    = "2.0"
 }
 
