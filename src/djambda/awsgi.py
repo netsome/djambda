@@ -8,6 +8,7 @@ from .wsgi import application
 
 def lambda_handler(event, context):
     if "manage" in event:
+        print(event)
         output = io.StringIO()
         management.call_command(*event["manage"].split(" "), stdout=output)
         return {"output": output.getvalue()}
