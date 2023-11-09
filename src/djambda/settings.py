@@ -130,12 +130,12 @@ if env.bool("ENABLE_S3_STORAGE", default=False):
     #AWS_S3_BUCKET_AUTH_STATIC = False
     #AWS_S3_PUBLIC_URL_STATIC = env.str("AWS_S3_PUBLIC_URL_STATIC", default="")
     #AWS_S3_KEY_PREFIX_STATIC = env.str("AWS_S3_KEY_PREFIX_STATIC", default="")
-elif env.bool("ENABLE_MANIFEST_STORAGE", default=False):
+#elif env.bool("ENABLE_MANIFEST_STORAGE", default=False):
     # https://docs.djangoproject.com/en/3.1/ref/contrib/staticfiles/#manifeststaticfilesstorage
 
-    STATICFILES_STORAGE = (
-        "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
-    )
+    #STATICFILES_STORAGE = (
+    #    "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
+    #)
 
 
 # HTTP
